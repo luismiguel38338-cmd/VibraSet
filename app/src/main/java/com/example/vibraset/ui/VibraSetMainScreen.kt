@@ -315,22 +315,15 @@ private fun ConsoleTopBar(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Box(
+                    androidx.compose.foundation.Image(
+                        painter = androidx.compose.ui.res.painterResource(id = com.example.R.drawable.vibraset_logo),
+                        contentDescription = "VibraSet Logo",
+                        contentScale = androidx.compose.ui.layout.ContentScale.Crop,
                         modifier = Modifier
-                            .size(32.dp)
+                            .size(34.dp)
                             .clip(RoundedCornerShape(8.dp))
-                            .background(
-                                Brush.linearGradient(listOf(NeonCyan, Color(0xFF0284C7)))
-                            ),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.GraphicEq,
-                            contentDescription = null,
-                            tint = CarbonDark,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
+                            .border(1.dp, NeonCyan.copy(alpha = 0.7f), RoundedCornerShape(8.dp))
+                    )
 
                     Column {
                         Row(verticalAlignment = Alignment.CenterVertically) {

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VibraSet</string>
+    <string name="app_description">Ecualizador y configurador de audio profesional para Android.</string>
+    <string name="app_author">Luis Miguel Martínez Cabrera</string>
 </resources>

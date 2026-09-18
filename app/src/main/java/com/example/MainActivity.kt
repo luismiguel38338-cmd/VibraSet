@@ -11,10 +11,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import com.example.ui.theme.VibraSetTheme
 import com.example.vibraset.ui.VibraSetMainScreen
 import com.example.vibraset.ui.VibraSetViewModel
+import com.example.vibraset.ui.components.VibraSetSplashScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -25,6 +30,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
+            var showSplash by remember { mutableStateOf(true) }
+
             // Check & request RECORD_AUDIO permission for hardware Visualizer FFT capture
             val permissionLauncher = rememberLauncherForActivityResult(
                 contract = ActivityResultContracts.RequestPermission()
@@ -42,7 +49,13 @@ class MainActivity : ComponentActivity() {
             }
 
             VibraSetTheme {
-                VibraSetMainScreen(viewModel = viewModel)
+                if (showSplash) {
+                    VibraSetSplashScreen(
+                        onSplashFinished = { showSplash = false }
+                    )
+                } else {
+                    VibraSetMainScreen(viewModel = viewModel)
+                }
             }
         }
     }
